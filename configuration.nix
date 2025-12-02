@@ -27,7 +27,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.resolvconf.enable = true;
-  networking.nameservers = [ "100.100.100.100" "100.88.43.124" "1.1.1.1" "1.0.0.1" ];
+  networking.nameservers = [
+    "100.100.100.100"
+    "100.88.43.124"
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
   networking.networkmanager.dns = "none";
 
   # Set your time zone.
@@ -50,21 +55,21 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  #SDDM Configuration      
+  #SDDM Configuration
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "sugar-dark";
+  services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.extraPackages = with pkgs; [
-    qt5.qtbase
-    qt5.qttools
-    qt5.qtgraphicaleffects
-  ]; 
+    qt6.qtbase
+    qt6.qttools
+    qt6.qtmultimedia
+  ];
   # Enable the KDE Plasma Desktop Environment.
   services.desktopManager.plasma6.enable = false;
-  # Enable the i3 Window Manager Environment 
+  # Enable the i3 Window Manager Environment
   services.xserver.windowManager.i3.enable = false;
   #hyprlock
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -110,8 +115,8 @@
   home-manager.backupFileExtension = "hm.bk.duck";
   home-manager.users.duckdarsh = import ./home.nix;
 
-  nixpkgs.config.allowUnfree = true;  
-  
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
     tcpdump
     base16-schemes
@@ -128,7 +133,6 @@
     gnumake
     heroic
     jdk11
-    jellyfin-media-player
     lshw
     lutris
     nh
@@ -139,7 +143,7 @@
     protonup-qt
     protonvpn-gui
     python312Packages.ds4drv
-    python3Full
+    python3
     qalculate-qt
     tailscale
     tmux
@@ -156,23 +160,21 @@
     ripgrep
     tree-sitter
     nodejs_20
-    barrier
     hugo
     ncdu
     neomutt
-    atuin            
+    atuin
     sqlite
     bc
     hyprland
     xwayland
     nmap
     asusctl
-    nm-tray
     xfce.thunar
     gvfs
-    xfce.tumbler            
-    sddm-sugar-dark
-                
+    xfce.tumbler
+    sddm-astronaut
+
     bibata-cursors
     mangohud
     telegram-desktop
@@ -180,10 +182,9 @@
     papirus-icon-theme
   ];
 
-  #permitted Insecure Packages      
-  nixpkgs.config.permittedInsecurePackages = [ 
-   "electron-33.4.11" 
-   "gradle-7.6.6" 
+  #permitted Insecure Packages
+  nixpkgs.config.permittedInsecurePackages = [
+    "gradle-7.6.6"
   ];
 
   #Flake reference for nh
@@ -194,9 +195,9 @@
   #Gaming
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; 
-    dedicatedServer.openFirewall = true; 
-    localNetworkGameTransfers.openFirewall = true; 
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
 
   #gamemode
@@ -209,35 +210,35 @@
     "nix-command"
     "flakes"
   ];
-              
-  #services enable     
+
+  #services enable
   #atuin
-  services.atuin.enable = true;     
-  #tailscale       
+  services.atuin.enable = true;
+  #tailscale
   services.tailscale.enable = true;
   #xwayland
   programs.xwayland.enable = true;
   #Asusd
   services.asusd.enable = true;
   services.asusd.enableUserService = true;
-  #sshd  
+  #sshd
   services.openssh.enable = false;
-  #gvfs for thunar 
+  #gvfs for thunar
   services.gvfs.enable = true;
   #thunar plugins and tumbler
   services.tumbler.enable = true;
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
-       thunar-archive-plugin
-       thunar-volman
-       thunar-media-tags-plugin
-   ];
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
   };
 
   #enabling nix-index
   programs.command-not-found.enable = false;
-  programs.nix-index.enable = true; 
+  programs.nix-index.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

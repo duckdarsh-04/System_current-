@@ -25,7 +25,7 @@
   home.packages = with pkgs; [
     aria2
     discord
-    jellyfin-media-player
+    jellyfin-mpv-shim
     localsend
     htop
     hollywood
@@ -43,7 +43,7 @@
     starship
     undollar
     waybar
-    rofi-wayland
+    rofi
     brightnessctl
     swaybg
     hyprlock
@@ -65,7 +65,7 @@
     amfora
     cava
     spotify
-    ryujinx
+    ryubing
     swaynotificationcenter
     git
     mailspring
@@ -115,11 +115,9 @@
   programs.starship.enable = true;
   programs.git = {
     enable = true;
-    userName = "duckdarsh-04";
-    userEmail = "mdarshan2004@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
+    settings.user.name = "duckdarsh-04";
+    settings.user.email = "mdarshan2004@gmail.com";
+    settings.init.defaultBranch = "main";
   };
   services.swayosd.enable = true;
 

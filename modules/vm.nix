@@ -16,7 +16,7 @@
         spice spice-gtk
         libvirt 
         spice-protocol
-        win-virtio
+        virtio-win
         win-spice
         pkgs.adwaita-icon-theme
   ];
@@ -27,8 +27,6 @@
       enable = true;
       qemu = { 
         swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMF.fd ];
       };
     };
     spiceUSBRedirection.enable = true;
