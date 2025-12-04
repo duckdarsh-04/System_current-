@@ -1,7 +1,8 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   imports = [
-    ./modules/dotfiles/bash.nix            
+    ./modules/dotfiles/bash.nix
     ./modules/dotfiles/kitty.nix
     ./modules/dotfiles/htop.nix
     ./modules/dotfiles/waybar.nix
@@ -48,10 +49,10 @@
     swaybg
     hyprlock
     hypridle
-    hyprshot            
+    hyprshot
     wlogout
     swww
-    w3m            
+    w3m
     wl-clipboard
     libreoffice
     impala
@@ -73,6 +74,8 @@
     cliphist
     wl-clip-persist
     nwg-clipman
+    zotero
+    pandoc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

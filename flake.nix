@@ -10,35 +10,46 @@
     winapps.url = "github:winapps-org/winapps";
   };
 
-  outputs = inputs@{ self, nixpkgs, nvf, ... }: 
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nvf,
+      ...
+    }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; config.allowUnfree = true;};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       neovimConfiguration = nvf.lib.neovimConfiguration {
         inherit pkgs;
         modules = [ ./nvf.nix ];
-     };
-     neovimPkg = neovimConfiguration.neovim;                   
-    in {                     
+      };
+      neovimPkg = neovimConfiguration.neovim;
+    in
+    {
       packages.${system}.default = neovimPkg;
-       
+
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;                          
-        modules = [ 
+        inherit system;
+        modules = [
           ./configuration.nix
           inputs.stylix.nixosModules.stylix
-          inputs.nvf.nixosModules.default 
+          inputs.nvf.nixosModules.default
           inputs.home-manager.nixosModules.default
-                             
-          { config.environment.systemPackages = [
+
+          {
+            config.environment.systemPackages = [
               neovimPkg
               inputs.yt-x.packages.${system}.default
               inputs.dark-send.packages.${system}.dark-send
               inputs.zen-browser.packages.${system}.default
               inputs.winapps.packages.${system}.winapps
-             ];                                               
-           }
-         ];
-       };         
-     };
+            ];
+          }
+        ];
+      };
+    };
 }

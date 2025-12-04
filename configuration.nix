@@ -11,7 +11,6 @@
     ./modules/fonts.nix
     ./modules/stylix.nix
     ./modules/vm.nix
-    ./modules/hyperland.nix
     ./modules/security.nix
   ];
 
@@ -64,6 +63,8 @@
     qt6.qttools
     qt6.qtmultimedia
   ];
+  services.displayManager.defaultSession = "hyprland";
+  programs.hyprland.enable = true;
   # Enable the KDE Plasma Desktop Environment.
   services.desktopManager.plasma6.enable = false;
   # Enable the i3 Window Manager Environment
@@ -167,6 +168,7 @@
     sqlite
     bc
     hyprland
+    hyprlandPlugins.hyprscrolling
     xwayland
     nmap
     asusctl
