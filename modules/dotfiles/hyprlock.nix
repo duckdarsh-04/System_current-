@@ -1,31 +1,34 @@
-{pkgs, config, ...}: {
-
- programs.hyprlock = {
-   enable = true;
-   settings = {
-     general = {
-       disable_loading_bar = true;
-       grace = 1;
-       hide_cursor = true;
-       no_fade_in = false; 
-     };
-     background = [
-       { 
-         path ="/home/duckdarsh/.hyprlock.jpg"; 
-         blur_passes = 3;
-         blur_size = 8;
-       }
-     ];
-     image = [
-       { 
-         path = "/home/duckdarsh/.hyprlockduck.jpg";
-         size = 150;
-         border_size = 4;
-         border_color = "rgb(0c96F9)";
-         rounding = -1;
-         position = "0, -40;";
-         halign = "center";
-         valign = "center";
+{
+  pkgs,
+  config,
+  ...
+}: {
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        disable_loading_bar = true;
+        grace = 1;
+        hide_cursor = true;
+        no_fade_in = false;
+      };
+      background = [
+        {
+          path = "/home/duckdarsh/.hyprlock.jpg";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+      image = [
+        {
+          path = "/home/duckdarsh/.hyprlockduck.jpg";
+          size = 150;
+          border_size = 4;
+          border_color = "rgb(0c96F9)";
+          rounding = -1;
+          position = "0, -40;";
+          halign = "center";
+          valign = "center";
         }
       ];
       input-field = [

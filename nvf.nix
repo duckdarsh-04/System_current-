@@ -1,10 +1,10 @@
-{pkgs, ...}:{
+{pkgs, ...}: {
   vim = {
     theme = {
       enable = true;
       name = "gruvbox";
-      style = "dark";    
-    }; 
+      style = "dark";
+    };
     dashboard.alpha.enable = true;
     dashboard.alpha.theme = "startify";
     statusline.lualine.enable = true;
@@ -21,21 +21,20 @@
       };
       "zen-mode.nvim" = {
         package = pkgs.vimPlugins.zen-mode-nvim;
-        setupModule = "zenmode";                                
+        setupModule = "zenmode";
       };
     };
     lsp.enable = true;
     lsp.formatOnSave = true;
     lsp.lightbulb.enable = true;
     lsp.trouble.enable = true;
-    
+
     spellcheck = {
       enable = true;
       languages = ["en"];
       #programmingWordlist = true;
     };
-    
-                
+
     binds = {
       whichKey.enable = true;
       cheatsheet.enable = true;
@@ -56,7 +55,6 @@
         desc = "toggle Neo-tree";
         silent = true;
       }
-
     ];
 
     ui = {
@@ -68,7 +66,7 @@
       };
       fastaction.enable = true;
     };
-    
+
     comments = {
       comment-nvim.enable = true;
     };

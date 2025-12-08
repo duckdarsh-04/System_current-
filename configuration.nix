@@ -1,10 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./modules/nvidia.nix
@@ -70,7 +71,7 @@
   # Enable the i3 Window Manager Environment
   services.xserver.windowManager.i3.enable = false;
   #hyprlock
-  security.pam.services.hyprlock = { };
+  security.pam.services.hyprlock = {};
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -176,6 +177,8 @@
     gvfs
     xfce.tumbler
     sddm-astronaut
+    libimobiledevice
+    alejandra
 
     bibata-cursors
     mangohud

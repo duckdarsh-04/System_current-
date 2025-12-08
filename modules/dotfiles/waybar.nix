@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
-
+}: {
   programs.waybar = {
     enable = true;
     settings = [
@@ -13,7 +11,7 @@
         clock24h = false;
         layer = "top";
         position = "top";
-        modules-center = [ "hyprland/workspaces" ];
+        modules-center = ["hyprland/workspaces"];
         modules-left = [
           "custom/startmenu"
           "custom/arrow6"
@@ -225,7 +223,7 @@
            border: 1px solid #${config.lib.stylix.colors.base05};
            border-radius: 8px;
          }
-         
+
          tooltip label {
            color: #${config.lib.stylix.colors.base05};
          }

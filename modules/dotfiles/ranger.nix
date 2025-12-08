@@ -1,13 +1,14 @@
-{config, pkgs, ...}: {
-
- programs.ranger = {
-   enable = true;
-   settings = {
-     preview_images = true;
-     preview_images_method = "kitty"; 
-     open_all_images = true;
-   };
- };
-
+{
+  config,
+  pkgs,
+  ...
+}: {
+  programs.ranger = {
+    enable = true;
+    settings = {
+      preview_images = true;
+      preview_images_method = "kitty";
+      open_all_images = true;
+    };
+  };
 }
-

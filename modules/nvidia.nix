@@ -1,13 +1,15 @@
-
-{ config, lib, pkgs, ... }:
-
-{ 
- # Enable OpenGL
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  # Enable OpenGL
   hardware.graphics = {
-	enable = true;
-        enable32Bit = true;        
+    enable = true;
+    enable32Bit = true;
   };
-  
+
   services.xserver.videoDrivers = ["nvidia"];
 
   # NVIDIA DRIVER SETTINGS
@@ -23,4 +25,3 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }
-

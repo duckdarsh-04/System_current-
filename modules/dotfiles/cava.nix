@@ -1,5 +1,5 @@
 {pkgs, ...}: {
- programs.cava = {
+  programs.cava = {
     enable = true;
     settings = {
       general = {
@@ -41,14 +41,3 @@
     };
   };
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./modules/dotfiles/bash.nix
     ./modules/dotfiles/kitty.nix
@@ -25,6 +27,7 @@
 
   home.packages = with pkgs; [
     aria2
+    audacity
     discord
     localsend
     htop
@@ -122,5 +125,4 @@
     settings.init.defaultBranch = "main";
   };
   services.swayosd.enable = true;
-
 }

@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.bash = {
     enable = true;
-    bashrcExtra =''
+    bashrcExtra = ''
       # Enable bash-git-prompt
       GIT_PROMPT_ONLY_IN_REPO=1
       source ~/.bash-git-prompt/gitprompt.sh
@@ -14,22 +16,21 @@
       # Custom functions
       if [ -f ~/func ]; then
         source ~/func
-      fi 
+      fi
     '';
 
-   shellAliases = {
-     ll = "ls -lah";
-     gs = "git status";
-     btop = "btop --force-utf";
-     rb="nh os switch"; 
-     ls="eza --icons --group-directories-first";
-     nv="sudo nvim";
-   };         
+    shellAliases = {
+      ll = "ls -lah";
+      gs = "git status";
+      btop = "btop --force-utf";
+      rb = "nh os switch";
+      ls = "eza --icons --group-directories-first";
+      nv = "sudo nvim";
+    };
   };
 
   home.packages = with pkgs; [
     neofetch
     bash-preexec
   ];
-
 }

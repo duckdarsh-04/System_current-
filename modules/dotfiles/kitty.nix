@@ -1,14 +1,16 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.kitty = {
     enable = true;
-    
-   font = {
+
+    font = {
       name = "nerd-fonts.inconsolata";
-      size = 14;          
-   };
-    
+      size = 14;
+    };
+
     themeFile = "Catppuccin-Mocha";
 
     settings = {
@@ -23,7 +25,7 @@
       cursor_stop_blinking_after = 0;
       cursor_shape = "beam";
       cursor_beam_thickness = 4;
-      cursor_underline_thickness = 2.0;                  
+      cursor_underline_thickness = 2.0;
       cursor_blink_interval = 0.5;
       cursor = "#f2cdcd";
       detect_urls = true;

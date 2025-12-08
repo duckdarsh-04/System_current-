@@ -2,7 +2,5 @@
   pkgs,
   config,
   lib,
-}:
-{
-
+}: {
 }
