@@ -26,7 +26,6 @@
   home.packages = with pkgs; [
     aria2
     discord
-    jellyfin-mpv-shim
     localsend
     htop
     hollywood
