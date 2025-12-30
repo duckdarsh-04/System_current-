@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./modules/dotfiles/bash.nix
     ./modules/dotfiles/kitty.nix
@@ -68,6 +69,7 @@
     amfora
     cava
     spotify
+    jellyfin-media-player
     ryubing
     swaynotificationcenter
     git
@@ -78,6 +80,7 @@
     nwg-clipman
     zotero
     pandoc
+    morgen
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

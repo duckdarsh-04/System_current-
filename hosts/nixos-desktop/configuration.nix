@@ -5,14 +5,15 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
-    ./modules/nvidia.nix
-    ./modules/fonts.nix
-    ./modules/stylix.nix
-    ./modules/vm.nix
-    ./modules/security.nix
+    ../modules/nvidia.nix
+    ../modules/fonts.nix
+    ../modules/stylix.nix
+    ../modules/commonsyspkgs.nix
+    ../modules/core/virtualization/libvirt.nix
   ];
 
   # Bootloader.
@@ -36,7 +37,6 @@
   networking.networkmanager.dns = "none";
 
   # Set your time zone.
-  #time.timeZone = "europe/London";
   services.automatic-timezoned.enable = true;
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
@@ -71,7 +71,7 @@
   # Enable the i3 Window Manager Environment
   services.xserver.windowManager.i3.enable = false;
   #hyprlock
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -107,78 +107,45 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-    ];
   };
 
   #home-manager config
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "hm.bk.duck";
-  home-manager.users.duckdarsh = import ./home.nix;
+  home-manager.users.duckdarsh = import ../../home/home.nix;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    tcpdump
-    base16-schemes
-    btop
     busybox
-    cmake
-    dig
-    eza
-    file
     flameshot
-    fzf
     gamemode
-    gcc
-    gnumake
     heroic
     jdk11
-    lshw
     lutris
-    nh
-    ntfs3g
     pkgs.javaPackages.openjfx17
     protonplus
-    progress
     protonup-qt
     protonvpn-gui
-    python312Packages.ds4drv
-    python3
     qalculate-qt
-    tailscale
-    tmux
-    unrar-wrapper
-    unzip
     vulkan-loader
     vulkan-tools
     wine
     weechat
-    wget
     winetricks
     evince
-    xclip
-    ripgrep
-    tree-sitter
     nodejs_20
     hugo
-    ncdu
     neomutt
-    atuin
-    sqlite
-    bc
     hyprland
     hyprlandPlugins.hyprscrolling
     xwayland
-    nmap
     asusctl
     xfce.thunar
-    gvfs
     xfce.tumbler
     sddm-astronaut
     libimobiledevice
-    alejandra
 
     bibata-cursors
     mangohud
@@ -228,8 +195,6 @@
   services.asusd.enableUserService = true;
   #sshd
   services.openssh.enable = false;
-  #gvfs for thunar
-  services.gvfs.enable = true;
   #thunar plugins and tumbler
   services.tumbler.enable = true;
   programs.thunar = {
