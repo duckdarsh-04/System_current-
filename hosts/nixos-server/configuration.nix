@@ -6,9 +6,7 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./alias.nix
   ];
 
   # Bootloader.
@@ -52,7 +50,7 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = false;
   services.desktopManager.plasma6.enable = false;
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -61,7 +59,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -90,77 +88,62 @@
       "transmission"
       "jellyfin"
     ];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
+  };
+  users.users.mindhunter = {
+    isNormalUser = true;
+    description = "mindhunter";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "transmission"
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  #home manager config
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "hm.bk.duck";
+  home-manager.users.duckdarsh = import ../../home/home-server/duckdarsh/home.nix;
+  home-manager.users.mindhunter = import ../../home/home-server/mindhunter/home.nix;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  #Flake reference for NH
+  environment.sessionVariables = {
+    NH_FLAKE = "/etc/nixos";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    btop
-    vim
-    wget
-    htop
     openssh
     sshguard
-    tailscale
-    neofetch
-    neovim
     zoxide
-    eza
     docker-compose
-    telegram-desktop
-    barrier
-    tmux
-    ranger
     adguardhome
     unbound
-    dig
-    busybox
+    busybox # move to commonnixpkgs
     transmission_4
-    iptables
+    iptables # setup under security is required
     openvpn
-    lolcat
-    cowsay
-    hollywood
-    cmatrix
-    figlet
-    git
-    sherlock
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
-    nudoku
     python3
     virtualenv
-    python311Packages.pyxdg
     w3m
-    amfora
-    phetch
-    cargo
-    gcc
     openssl
     syncthing
-    zenith
-    nh
-    neovim
     wakeonlan
-    kitty
-    bat
-    tcpdump
-    nmap
     ethtool
-    ncdu
-    lm_sensors
     fail2ban
+  ];
+
+  # Experimental features enabled
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
   ];
 
   # jellyfin
