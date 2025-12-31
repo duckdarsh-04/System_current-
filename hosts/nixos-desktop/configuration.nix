@@ -147,8 +147,6 @@
 
     bibata-cursors
     mangohud
-    telegram-desktop # move to home.nix
-    zapzap # move to home.nix
     papirus-icon-theme
   ];
 
