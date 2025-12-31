@@ -5,17 +5,9 @@
 }:
 {
   imports = [
-    ../modules/dotfiles/bash.nix
-    ../modules/dotfiles/kitty.nix
-    ../modules/dotfiles/htop.nix
-    ../modules/dotfiles/waybar.nix
-    ../modules/dotfiles/rofi.nix
-    ../modules/dotfiles/ranger.nix
-    ../modules/dotfiles/swaync.nix
-    ../modules/dotfiles/hyprlock.nix
-    ../modules/dotfiles/hypridle.nix
-    ../modules/dotfiles/xdg.nix
-    ../modules/dotfiles/cava.nix
+    ../../modules/dotfiles/bash.nix
+    ../../modules/dotfiles/htop.nix
+    ../../modules/dotfiles/ranger.nix
   ];
 
   home.username = "duckdarsh";
@@ -24,62 +16,22 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    aria2
-    audacity
-    discord
-    localsend
-    htop
-    hollywood
-    lolcat
-    cmatrix
-    brave
+    bat
     phetch
-    kitty
-    kitty-themes
-    vlc
+    amfora
     neofetch
     ranger
-    nudoku
-    pavucontrol
-    starship
-    undollar
-    waybar
-    rofi
-    brightnessctl
-    swaybg
-    hyprlock
-    hypridle
-    hyprshot
-    wlogout
-    swww
-    w3m
-    wl-clipboard
-    libreoffice
-    impala
-    swayosd
-    teams-for-linux
-    obsidian
-    dmidecode
-    sl
-    burpsuite
-    magic-wormhole
-    amfora
-    cava
-    spotify
-    jellyfin-media-player
-    ryubing
-    swaynotificationcenter
+    figlet
     git
-    mailspring
-    keepassxc
-    cliphist
-    wl-clip-persist
-    nwg-clipman
-    zotero
-    morgen
+    lolcat
+    cowsay
+    cmatrix
+    hollywood
+    tmux
+    kitty
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -119,12 +71,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.starship.enable = true;
-  programs.git = {
-    enable = true;
-    settings.user.name = "duckdarsh-04";
-    settings.user.email = "mdarshan2004@gmail.com";
-    settings.init.defaultBranch = "main";
-  };
-  services.swayosd.enable = true;
 }

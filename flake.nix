@@ -60,6 +60,11 @@
             ./hosts/nixos-server/configuration.nix
             inputs.nvf.nixosModules.default
             inputs.home-manager.nixosModules.default
+            {
+              config.environment.systemPackages = [
+                neovimPkg
+              ];
+            }
           ];
         };
       };

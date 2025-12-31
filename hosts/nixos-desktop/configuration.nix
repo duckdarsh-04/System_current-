@@ -113,13 +113,11 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "hm.bk.duck";
-  home-manager.users.duckdarsh = import ../../home/home.nix;
+  home-manager.users.duckdarsh = import ../../home/nixos-desktop/home.nix;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    busybox
-    flameshot
     gamemode
     heroic
     jdk11
@@ -149,8 +147,8 @@
 
     bibata-cursors
     mangohud
-    telegram-desktop
-    zapzap
+    telegram-desktop # move to home.nix
+    zapzap # move to home.nix
     papirus-icon-theme
   ];
 
@@ -159,7 +157,7 @@
     "gradle-7.6.6"
   ];
 
-  #Flake reference for nh
+  #Flake reference for NH
   environment.sessionVariables = {
     NH_FLAKE = "/etc/nixos";
   };

@@ -103,8 +103,8 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "hm.bk.duck";
-  home-manager.users.duckdarsh = import ../../home/home-server/duckdarsh/home.nix;
-  home-manager.users.mindhunter = import ../../home/home-server/mindhunter/home.nix;
+  home-manager.users.duckdarsh = import ../../home/nixos-server/duckdarsh/home.nix;
+  home-manager.users.mindhunter = import ../../home/nixos-server/mindhunter/home.nix;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
