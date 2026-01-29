@@ -144,6 +144,7 @@
     xfce.tumbler
     sddm-astronaut
     libimobiledevice
+    ollama
 
     bibata-cursors
     mangohud
@@ -191,6 +192,8 @@
   services.asusd.enableUserService = true;
   #sshd
   services.openssh.enable = false;
+  #ollama
+  services.ollama.enable = true;
   #thunar plugins and tumbler
   services.tumbler.enable = true;
   programs.thunar = {

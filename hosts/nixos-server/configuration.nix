@@ -7,6 +7,10 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../modules/commonsyspkgs.nix
+    ../modules/core/security/fail2ban.nix
+    ../modules/core/security/ssh.nix
+    ../modules/core/virtualization/docker.nix
   ];
 
   # Bootloader.
@@ -123,14 +127,17 @@
     docker-compose
     adguardhome
     unbound
-    busybox # move to commonnixpkgs
     transmission_4
-    iptables # setup under security is required
+    iptables
     openvpn
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
     python3
+    python3Packages.pyxdg
+    python3Packages.beautifulsoup4
+    python3Packages.aiohttp
+    python3Packages.pyperclip
     virtualenv
     w3m
     openssl
@@ -196,10 +203,18 @@
 
   # Enable the OpenSSH daemon.
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [
+    22
+    80
+    53
+    8000
+    9443
+    8080
+    8096
+  ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -208,5 +223,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
