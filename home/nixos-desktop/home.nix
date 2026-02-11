@@ -16,6 +16,7 @@
     ../modules/dotfiles/hypridle.nix
     ../modules/dotfiles/xdg.nix
     ../modules/dotfiles/cava.nix
+    ../modules/dotfiles/hyprland/default.nix
   ];
 
   home.username = "duckdarsh";

@@ -145,6 +145,7 @@
     wakeonlan
     ethtool
     fail2ban
+    xclip
   ];
 
   # Experimental features enabled

@@ -23,7 +23,6 @@
     unrar-wrapper
     unzip
     wget
-    xclip
     ripgrep
     tree-sitter
     ncdu
@@ -33,6 +32,7 @@
     nmap
     lm_sensors
     alejandra
+    lazygit
     wget
   ];
 }
