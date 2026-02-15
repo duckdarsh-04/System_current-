@@ -33,6 +33,5 @@
     lm_sensors
     alejandra
     lazygit
-    wget
   ];
 }

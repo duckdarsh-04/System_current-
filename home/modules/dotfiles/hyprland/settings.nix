@@ -11,9 +11,23 @@
 
       resize_on_border = false;
       allow_tearing = false;
-      layout = "scroller";
+      layout = "scrolling";
     };
 
+    plugin = {
+      scrolling = {
+        column_default_width = "onehalf";
+        focus_wrap = false;
+        column_widths = "onehalf onethird twothirds onequarter";
+      };
+
+      hyprexpo = {
+        columns = 3;
+        gap_size = 5;
+        bg_col = "rgb(111111)";
+        workspace_method = "first 1";
+      };
+    };
     decoration = {
       rounding = 10;
       rounding_power = 2;

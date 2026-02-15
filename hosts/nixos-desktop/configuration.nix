@@ -137,7 +137,6 @@
     hugo
     neomutt
     hyprland
-    hyprlandPlugins.hyprscrolling
     xwayland
     asusctl
     xfce.thunar

@@ -10,7 +10,9 @@
     enable = true;
     plugins = [
       pkgs.hyprlandPlugins.hyprscrolling
+      pkgs.hyprlandPlugins.hyprexpo
     ];
+
     settings = {
       monitor = ",preferred,auto,auto";
       #Programs
@@ -36,10 +38,10 @@
         "HYPRCURSOR_SIZE,42"
       ];
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+      #dwindle = {
+      #pseudotile = true;
+      #preserve_split = true;
+      #};
 
       master = {
         new_status = "master";

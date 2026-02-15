@@ -20,13 +20,20 @@
       "$mainMod SHIFT, F, fullscreen"
       "$mainMod, L, exec, hyprlock"
       "$mainMod SHIFT, C, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-
+      # Move windows
+      "$mainMod, period, layoutmsg, colresize +0.1"
+      "$mainMod CTRL, period, layoutmsg, colresize -0.1"
+      "$mainMod, comma, layoutmsg, swapcol l"
+      "$mainMod, period, layoutmsg, swapcol r"
+      "$mainMod SHIFT, comma, layoutmsg, move l"
+      "$mainMod SHIFT, period, layoutmsg, move r"
+      # Hyprexpo
+      "$mainMod, TAB, hyprexpo:expo, toggle"
       # Focus movement
       "$mainMod, left, movefocus, l"
       "$mainMod, right, movefocus, r"
       "$mainMod, up, movefocus, u"
       "$mainMod, down, movefocus, d"
-
       # Workspace switching
       "$mainMod, 1, workspace, 1"
       "$mainMod, 2, workspace, 2"

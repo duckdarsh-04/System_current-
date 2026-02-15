@@ -70,20 +70,19 @@
     amfora
     cava
     spotify
-    jellyfin-media-player
+    jellyflix
     ryubing
     swaynotificationcenter
     git
-    mailspring
     keepassxc
     cliphist
     wl-clip-persist
     nwg-clipman
     zotero
-    morgen
     tmux
     zapzap
     telegram-desktop
+    freetube
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
