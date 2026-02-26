@@ -35,7 +35,8 @@
     "1.0.0.1"
   ];
   networking.networkmanager.dns = "none";
-
+  #System encryption
+  boot.initrd.luks.devices."luks-d2879559-8f56-4cf4-9b57-12a66d051a2e".device = "/dev/disk/by-uuid/d2879559-8f56-4cf4-9b57-12a66d051a2e";
   # Set your time zone.
   services.automatic-timezoned.enable = true;
   # Select internationalisation properties.

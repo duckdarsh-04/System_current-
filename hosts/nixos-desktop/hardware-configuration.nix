@@ -8,40 +8,27 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a596783f-a550-478f-9de1-11c4c3ed409d";
+    { device = "/dev/mapper/luks-66a8c6d7-75d6-4da0-b735-9afdb9db84b1";
       fsType = "ext4";
     };
 
+  boot.initrd.luks.devices."luks-66a8c6d7-75d6-4da0-b735-9afdb9db84b1".device = "/dev/disk/by-uuid/66a8c6d7-75d6-4da0-b735-9afdb9db84b1";
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/ACDB-5EFA";
+    { device = "/dev/disk/by-uuid/7DD6-B328";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/home/duckdarsh/Vault" =
-    { device = "/dev/disk/by-uuid/7b9d5a49-f266-4112-8233-0b86e8296f92";
-      fsType = "ext4";
-    };
-
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ab290228-35eb-47e1-8d5a-84cf78c4df93"; }
+    [ { device = "/dev/mapper/luks-d2879559-8f56-4cf4-9b57-12a66d051a2e"; }
     ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

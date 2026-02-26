@@ -5,7 +5,6 @@
     stylix.url = "github:danth/stylix/release-25.11";
     yt-x.url = "github:Benexl/yt-x";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
-    dark-send.url = "path:/home/duckdarsh/dark-send-pr";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     winapps.url = "github:winapps-org/winapps";
   };
@@ -46,7 +45,6 @@
               config.environment.systemPackages = [
                 neovimPkg
                 inputs.yt-x.packages.${system}.default
-                inputs.dark-send.packages.${system}.dark-send
                 inputs.zen-browser.packages.${system}.default
                 inputs.winapps.packages.${system}.winapps
               ];

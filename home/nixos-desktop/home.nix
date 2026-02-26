@@ -128,6 +128,7 @@
     settings.user.name = "duckdarsh-04";
     settings.user.email = "mdarshan2004@gmail.com";
     settings.init.defaultBranch = "main";
+    settings.safe.diriectory = [ "/etc/nixos" ];
   };
   services.swayosd.enable = true;
 }
