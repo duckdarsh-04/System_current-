@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -14,14 +15,14 @@
       };
       background = [
         {
-          path = "/home/duckdarsh/.hyprlock.jpg";
+          path = "/home/duckdarsh/Hyprlock.png";
           blur_passes = 3;
           blur_size = 8;
         }
       ];
       image = [
         {
-          path = "/home/duckdarsh/.hyprlockduck.jpg";
+          path = "/home/duckdarsh/.Hyprlockduck.jpeg";
           size = 150;
           border_size = 4;
           border_color = "rgb(0c96F9)";

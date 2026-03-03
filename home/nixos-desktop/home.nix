@@ -16,6 +16,7 @@
     ../modules/dotfiles/hypridle.nix
     ../modules/dotfiles/xdg.nix
     ../modules/dotfiles/cava.nix
+    #../modules/dotfiles/dark_send_project/dark_send.nix
     ../modules/dotfiles/hyprland/default.nix
   ];
 
@@ -123,6 +124,7 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.starship.enable = true;
+  services.dark-send.enable = true;
   programs.git = {
     enable = true;
     settings.user.name = "duckdarsh-04";

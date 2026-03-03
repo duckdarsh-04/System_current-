@@ -2,13 +2,14 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.bash = {
     enable = true;
     bashrcExtra = ''
       # Enable bash-git-prompt
       GIT_PROMPT_ONLY_IN_REPO=1
-      source ~/.bash-git-prompt/gitprompt.sh
+      source ${pkgs.bash-git-prompt}/gitprompt.sh
       # Load bash-preexec
       source ${pkgs.bash-preexec}/share/bash/bash-preexec.sh
       # Atuin
@@ -32,5 +33,6 @@
   home.packages = with pkgs; [
     neofetch
     bash-preexec
+    bash-git-prompt
   ];
 }

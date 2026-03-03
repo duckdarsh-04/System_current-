@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -36,7 +37,8 @@
   ];
   networking.networkmanager.dns = "none";
   #System encryption
-  boot.initrd.luks.devices."luks-d2879559-8f56-4cf4-9b57-12a66d051a2e".device = "/dev/disk/by-uuid/d2879559-8f56-4cf4-9b57-12a66d051a2e";
+  boot.initrd.luks.devices."luks-d2879559-8f56-4cf4-9b57-12a66d051a2e".device =
+    "/dev/disk/by-uuid/d2879559-8f56-4cf4-9b57-12a66d051a2e";
   # Set your time zone.
   services.automatic-timezoned.enable = true;
   # Select internationalisation properties.
@@ -115,6 +117,7 @@
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "hm.bk.duck";
   home-manager.users.duckdarsh = import ../../home/nixos-desktop/home.nix;
+  home-manager.sharedModules = [ inputs.dark-send.homeManagerModules.default ];
 
   nixpkgs.config.allowUnfree = true;
 

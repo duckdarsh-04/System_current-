@@ -7,6 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     winapps.url = "github:winapps-org/winapps";
+    dark-send.url = "github:duckdarsh-04/dark-send";
   };
 
   outputs =
@@ -35,6 +36,7 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/nixos-desktop/configuration.nix
             inputs.stylix.nixosModules.stylix

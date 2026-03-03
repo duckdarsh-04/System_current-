@@ -13,7 +13,7 @@
       "$mainMod, J, togglesplit,"
 
       # Custom scripts and tools
-      "$mainMod SHIFT, W, exec, ~/.wallpaper.sh wallpapers"
+      "$mainMod SHIFT, W, exec, /etc/nixos/home/modules/dotfiles/hyprland/scripts/wallpaper.sh"
       "$mainMod SHIFT, X, exec, wlogout"
       "$mainMod, S, exec, hyprshot -m window | wl-copy"
       "$mainMod SHIFT, S, exec, hyprshot -m region | wl-copy"
