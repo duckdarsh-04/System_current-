@@ -1,12 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.11";
     yt-x.url = "github:Benexl/yt-x";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    winapps.url = "github:winapps-org/winapps";
     dark-send.url = "github:duckdarsh-04/dark-send";
   };
 
@@ -14,6 +14,7 @@
     inputs@{
       self,
       nixpkgs,
+      nixpkgs-unstable,
       nvf,
       ...
     }:
@@ -23,6 +24,12 @@
         inherit system;
         config.allowUnfree = true;
       };
+
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       neovimConfiguration = nvf.lib.neovimConfiguration {
         inherit pkgs;
         modules = [ ./nvf.nix ];
@@ -36,7 +43,10 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            inherit pkgs-unstable;
+          };
           modules = [
             ./hosts/nixos-desktop/configuration.nix
             inputs.stylix.nixosModules.stylix
@@ -48,7 +58,6 @@
                 neovimPkg
                 inputs.yt-x.packages.${system}.default
                 inputs.zen-browser.packages.${system}.default
-                inputs.winapps.packages.${system}.winapps
               ];
             }
           ];

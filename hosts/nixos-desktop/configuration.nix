@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }:
@@ -121,38 +122,42 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    gamemode
-    heroic
-    jdk11
-    lutris
-    pkgs.javaPackages.openjfx17
-    protonplus
-    protonup-qt
-    protonvpn-gui
-    qalculate-qt
-    vulkan-loader
-    vulkan-tools
-    wine
-    weechat
-    winetricks
-    evince
-    nodejs_20
-    hugo
-    neomutt
-    hyprland
-    xwayland
-    asusctl
-    xfce.thunar
-    xfce.tumbler
-    sddm-astronaut
-    libimobiledevice
-    ollama
+  environment.systemPackages =
+    (with pkgs; [
+      gamemode
+      heroic
+      jdk11
+      lutris
+      pkgs.javaPackages.openjfx17
+      protonplus
+      protonup-qt
+      protonvpn-gui
+      qalculate-qt
+      vulkan-loader
+      vulkan-tools
+      wine
+      weechat
+      winetricks
+      evince
+      nodejs_20
+      hugo
+      neomutt
+      hyprland
+      xwayland
+      asusctl
+      xfce.thunar
+      xfce.tumbler
+      sddm-astronaut
+      libimobiledevice
+      ollama
 
-    bibata-cursors
-    mangohud
-    papirus-icon-theme
-  ];
+      bibata-cursors
+      mangohud
+      papirus-icon-theme
+    ])
+    ++ (with pkgs-unstable; [
+      zed-editor
+    ]);
 
   #permitted Insecure Packages
   nixpkgs.config.permittedInsecurePackages = [
