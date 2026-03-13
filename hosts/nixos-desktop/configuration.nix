@@ -71,7 +71,7 @@
   services.displayManager.defaultSession = "hyprland";
   programs.hyprland.enable = true;
   # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = false;
+  #services.desktopManager.plasma6.enable = false;
   # Enable the i3 Window Manager Environment
   services.xserver.windowManager.i3.enable = false;
   #hyprlock

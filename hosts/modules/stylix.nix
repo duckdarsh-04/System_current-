@@ -11,6 +11,7 @@
   stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 48;
   stylix.autoEnable = false;
+  stylix.polarity = "dark";
   stylix.fonts = {
     serif = {
       package = pkgs.noto-fonts;

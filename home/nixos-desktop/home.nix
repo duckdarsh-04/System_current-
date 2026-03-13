@@ -16,7 +16,6 @@
     ../modules/dotfiles/hypridle.nix
     ../modules/dotfiles/xdg.nix
     ../modules/dotfiles/cava.nix
-    #../modules/dotfiles/dark_send_project/dark_send.nix
     ../modules/dotfiles/hyprland/default.nix
   ];
 
@@ -84,6 +83,8 @@
     zapzap
     telegram-desktop
     freetube
+    imv
+    libnotify
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -133,4 +134,6 @@
     settings.safe.diriectory = [ "/etc/nixos" ];
   };
   services.swayosd.enable = true;
+  stylix.targets.gtk.enable = true;
+  stylix.targets.qt.enable = true;
 }

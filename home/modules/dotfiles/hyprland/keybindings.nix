@@ -79,8 +79,13 @@
       ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
       ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
       ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-      ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+      ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
+      ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
+      ",XF86KbdBrightnessUp, exec, asusctl -n"
+      ",XF86KbdBrightnessDown, exec, asusctl -p"
+      ",XF86Launch3, exec, asusctl aura -n"
+      ",XF86Launch4, exec, asusctl profile -n && notify-send 'Profile' \"$(asusctl profile -p | grep 'Active profile' | awk '{print $NF}')\""
+      ",XF86Launch1, exec, rog-control-center"
     ];
 
     # Media controls (non-repeatable)

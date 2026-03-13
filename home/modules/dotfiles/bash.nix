@@ -18,6 +18,10 @@
       if [ -f ~/func ]; then
         source ~/func
       fi
+      if [ -z "$NEOFETCH_SHOWN" ]; then
+        export NEOFETCH_SHOWN=1 
+        neofetch
+      fi
     '';
 
     shellAliases = {
