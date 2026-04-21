@@ -36,6 +36,13 @@
     "1.1.1.1"
     "1.0.0.1"
   ];
+  networking.hosts = {
+    "0.0.0.0" = [
+      "paradise-s1.battleye.com"
+      "test-s1.battleye.com"
+      "paradiseenhanced-s1.battleye.com"
+    ];
+  };
   networking.networkmanager.dns = "none";
   #System encryption
   boot.initrd.luks.devices."luks-d2879559-8f56-4cf4-9b57-12a66d051a2e".device =
@@ -73,7 +80,7 @@
   # Enable the KDE Plasma Desktop Environment.
   #services.desktopManager.plasma6.enable = false;
   # Enable the i3 Window Manager Environment
-  services.xserver.windowManager.i3.enable = false;
+  #services.xserver.windowManager.i3.enable = false;
   #hyprlock
   security.pam.services.hyprlock = { };
   # Configure keymap in X11
@@ -119,6 +126,7 @@
   home-manager.backupFileExtension = "hm.bk.duck";
   home-manager.users.duckdarsh = import ../../home/nixos-desktop/home.nix;
   home-manager.sharedModules = [ inputs.dark-send.homeManagerModules.default ];
+  home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -132,7 +140,6 @@
       protonplus
       protonup-qt
       protonvpn-gui
-      qalculate-qt
       vulkan-loader
       vulkan-tools
       wine
@@ -225,10 +232,10 @@
   # };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedTCPPorts = [ 8080 ];
+  #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

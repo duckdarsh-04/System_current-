@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -16,6 +17,7 @@
     ../modules/dotfiles/hypridle.nix
     ../modules/dotfiles/xdg.nix
     ../modules/dotfiles/cava.nix
+    ../modules/dotfiles/obsidian.nix
     ../modules/dotfiles/hyprland/default.nix
   ];
 
@@ -27,65 +29,73 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    aria2
-    audacity
-    discord
-    localsend
-    htop
-    hollywood
-    lolcat
-    cmatrix
-    brave
-    phetch
-    kitty
-    kitty-themes
-    vlc
-    neofetch
-    ranger
-    nudoku
-    pavucontrol
-    starship
-    undollar
-    waybar
-    rofi
-    brightnessctl
-    swaybg
-    hyprlock
-    hypridle
-    hyprshot
-    wlogout
-    swww
-    w3m
-    wl-clipboard
-    libreoffice
-    impala
-    swayosd
-    teams-for-linux
-    obsidian
-    dmidecode
-    sl
-    burpsuite
-    magic-wormhole
-    amfora
-    cava
-    spotify
-    jellyflix
-    ryubing
-    swaynotificationcenter
-    git
-    keepassxc
-    cliphist
-    wl-clip-persist
-    nwg-clipman
-    zotero
-    tmux
-    zapzap
-    telegram-desktop
-    freetube
-    imv
-    libnotify
-  ];
+  home.packages =
+    (with pkgs; [
+      aria2
+      audacity
+      discord
+      localsend
+      htop
+      hollywood
+      lolcat
+      cmatrix
+      brave
+      phetch
+      kitty
+      kitty-themes
+      vlc
+      neofetch
+      ranger
+      nudoku
+      pavucontrol
+      starship
+      undollar
+      waybar
+      rofi
+      brightnessctl
+      swaybg
+      hyprlock
+      hypridle
+      hyprshot
+      wlogout
+      swww
+      w3m
+      wl-clipboard
+      libreoffice
+      impala
+      swayosd
+      teams-for-linux
+      obsidian
+      dmidecode
+      sl
+      burpsuite
+      magic-wormhole
+      amfora
+      cava
+      spotify
+      jellyfin-desktop
+      ryubing
+      swaynotificationcenter
+      git
+      keepassxc
+      cliphist
+      wl-clip-persist
+      nwg-clipman
+      zotero
+      tmux
+      zapzap
+      telegram-desktop
+      freetube
+      imv
+      libnotify
+      pandoc
+      jasp-desktop
+      bun
+    ])
+
+    ++ (with pkgs-unstable; [
+
+    ]);
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

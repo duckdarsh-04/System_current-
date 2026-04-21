@@ -55,6 +55,12 @@
         package = pkgs.vimPlugins.indent-blankline-nvim;
         setupModule = "ibl";
       };
+      "instant.nvim" = {
+        package = pkgs.vimPlugins.instant-nvim;
+        before = ''
+          vim.g.instant_username = "duckdarsh"
+        '';
+      };
     };
 
     lsp.enable = true;

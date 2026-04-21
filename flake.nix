@@ -16,6 +16,7 @@
       nixpkgs,
       nixpkgs-unstable,
       nvf,
+      home-manager,
       ...
     }:
     let
@@ -52,7 +53,6 @@
             inputs.stylix.nixosModules.stylix
             inputs.nvf.nixosModules.default
             inputs.home-manager.nixosModules.default
-
             {
               config.environment.systemPackages = [
                 neovimPkg
