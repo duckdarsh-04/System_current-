@@ -17,7 +17,7 @@
     ../modules/dotfiles/hypridle.nix
     ../modules/dotfiles/xdg.nix
     ../modules/dotfiles/cava.nix
-    ../modules/dotfiles/obsidian.nix
+    #../modules/dotfiles/obsidian.nix
     ../modules/dotfiles/hyprland/default.nix
   ];
 

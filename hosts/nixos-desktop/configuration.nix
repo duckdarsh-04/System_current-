@@ -16,13 +16,22 @@
     ../modules/stylix.nix
     ../modules/commonsyspkgs.nix
     ../modules/core/virtualization/libvirt.nix
+    ../modules/core/security/sops.nix
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 5;
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  #zramSwap enabled
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 40;
+  };
+  # powerprofile management
+  services.power-profiles-daemon.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
@@ -118,6 +127,7 @@
       "networkmanager"
       "wheel"
     ];
+    hashedPasswordFile = config.sops.secrets."duckdarsh-password".path;
   };
 
   #home-manager config
@@ -157,6 +167,7 @@
       sddm-astronaut
       libimobiledevice
       ollama
+      appimage-run
 
       bibata-cursors
       mangohud
@@ -202,6 +213,11 @@
   services.tailscale.enable = true;
   #xwayland
   programs.xwayland.enable = true;
+  #gamescope
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
   #Asusd
   services.asusd.enable = true;
   services.asusd.enableUserService = true;

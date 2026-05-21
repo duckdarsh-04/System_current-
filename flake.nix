@@ -8,6 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     dark-send.url = "github:duckdarsh-04/dark-send";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -53,6 +54,7 @@
             inputs.stylix.nixosModules.stylix
             inputs.nvf.nixosModules.default
             inputs.home-manager.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
             {
               config.environment.systemPackages = [
                 neovimPkg

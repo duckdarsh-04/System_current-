@@ -3,7 +3,6 @@
 {
   programs.obsidian = {
     enable = true;
-
     vaults."Obsidian-vault-university" = {
       target = "Documents/Obsidian-vault-university";
 
@@ -49,22 +48,7 @@
         "word-count"
         "file-recovery"
         "sync"
-        "bases"
-      ];
-
-      settings.communityPlugins = [
-        "obsidian-git"
-        "easy-typing-obsidian"
-        "obsidian-icon-folder"
-        "highlightr-plugin"
-        "obsidian-icons-plugin"
-        "better-word-count"
-        "table-editor-obsidian"
-        "obsidian-relative-line-numbers"
-        "obsidian-pandoc"
-        "obsidian-smart-typography"
       ];
     };
   };
-
 }

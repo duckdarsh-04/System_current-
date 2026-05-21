@@ -3,14 +3,15 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # NVIDIA DRIVER SETTINGS
   hardware.nvidia = {
