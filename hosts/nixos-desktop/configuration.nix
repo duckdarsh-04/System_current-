@@ -24,12 +24,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.kernelPackages = pkgs.linuxPackages_zen;
+
   #zramSwap enabled
   zramSwap = {
     enable = true;
     algorithm = "zstd";
     memoryPercent = 40;
   };
+
   # powerprofile management
   services.power-profiles-daemon.enable = true;
 
@@ -45,14 +47,8 @@
     "1.1.1.1"
     "1.0.0.1"
   ];
-  networking.hosts = {
-    "0.0.0.0" = [
-      "paradise-s1.battleye.com"
-      "test-s1.battleye.com"
-      "paradiseenhanced-s1.battleye.com"
-    ];
-  };
   networking.networkmanager.dns = "none";
+
   #System encryption
   boot.initrd.luks.devices."luks-d2879559-8f56-4cf4-9b57-12a66d051a2e".device =
     "/dev/disk/by-uuid/d2879559-8f56-4cf4-9b57-12a66d051a2e";
@@ -130,6 +126,8 @@
     hashedPasswordFile = config.sops.secrets."duckdarsh-password".path;
   };
 
+  #sops
+  nix.settings.secret-key-files = [ config.sops.secrets."cache-priv-key".path ];
   #home-manager config
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

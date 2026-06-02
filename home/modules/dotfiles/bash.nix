@@ -14,12 +14,9 @@
       source ${pkgs.bash-preexec}/share/bash/bash-preexec.sh
       # Atuin
       eval "$(atuin init bash)"
-      # Custom functions
-      if [ -f ~/func ]; then
-        source ~/func
-      fi
-      if [ -z "$NEOFETCH_SHOWN" ]; then
-        export NEOFETCH_SHOWN=1 
+      #neofetch
+      if [[ $- == *i* ]] && [[ ! -f /tmp/neofetch-shown-$USER ]]; then
+        touch /tmp/neofetch-shown-$USER
         neofetch
       fi
     '';

@@ -11,18 +11,23 @@
     ../modules/core/security/fail2ban.nix
     ../modules/core/security/ssh.nix
     ../modules/core/virtualization/docker.nix
+    ../modules/core/security/sops-server.nix
   ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/disk/by-id/ata-CT500BX500SSD1_2507E9A883D5";
   boot.loader.grub.useOSProber = true;
+
+  #zramSwap
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
   networking.hostName = "nixos-server"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -85,6 +90,7 @@
   users.users.duckdarsh = {
     isNormalUser = true;
     description = "duckdarsh";
+    hashedPasswordFile = config.sops.secrets."duckdarsh-password".path;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -103,6 +109,13 @@
     ];
   };
 
+  #important
+  nix.settings.substituters = [ "https://cache.nixos.org" ];
+  nix.settings.trusted-public-keys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "desktop-cache-1:RPLTOCinD//P/fe+vnpf91m79tDvqtYZn1FMa+kFbQY="
+  ];
+  security.sudo.wheelNeedsPassword = false;
   #home manager config
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
@@ -146,6 +159,7 @@
     ethtool
     fail2ban
     xclip
+    smartmontools
   ];
 
   # Experimental features enabled
@@ -154,6 +168,12 @@
     "flakes"
   ];
 
+  services.smartd = {
+    enable = true;
+    autodetect = true;
+    notifications.mail.enable = false;
+    defaults.monitored = "-a -o on -S on -n standby,q -s (S/../.././02|L/../../6/03)";
+  };
   # jellyfin
   services.jellyfin.enable = true;
   # Tailscale
@@ -175,6 +195,7 @@
   # Transmission daemon service enabled
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     openRPCPort = false;
     settings = {
       #rpc-bind-address = "0.0.0.0";

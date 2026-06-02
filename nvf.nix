@@ -128,7 +128,7 @@
       enableTreesitter = true;
       lua.enable = true;
       nix.enable = true;
-      ts.enable = true;
+      typescript.enable = true;
       rust.enable = true;
       python.enable = true;
       html.enable = true;

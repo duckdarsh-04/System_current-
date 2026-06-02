@@ -9,6 +9,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     dark-send.url = "github:duckdarsh-04/dark-send";
     sops-nix.url = "github:Mic92/sops-nix";
+    colmena.url = "github:zhaofengli/colmena";
   };
 
   outputs =
@@ -18,6 +19,7 @@
       nixpkgs-unstable,
       nvf,
       home-manager,
+      colmena,
       ...
     }:
     let
@@ -37,6 +39,13 @@
         modules = [ ./nvf.nix ];
       };
       neovimPkg = neovimConfiguration.neovim;
+      serverModules = [
+        ./hosts/nixos-server/configuration.nix
+        inputs.nvf.nixosModules.default
+        inputs.home-manager.nixosModules.default
+        inputs.sops-nix.nixosModules.sops
+        { environment.systemPackages = [ neovimPkg ]; }
+      ];
     in
     {
       formatter.${system} = pkgs.alejandra;
@@ -60,6 +69,7 @@
                 neovimPkg
                 inputs.yt-x.packages.${system}.default
                 inputs.zen-browser.packages.${system}.default
+                inputs.colmena.packages.${system}.colmena
               ];
             }
           ];
@@ -67,16 +77,19 @@
         # Server
         nixos-server = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [
-            ./hosts/nixos-server/configuration.nix
-            inputs.nvf.nixosModules.default
-            inputs.home-manager.nixosModules.default
-            {
-              config.environment.systemPackages = [
-                neovimPkg
-              ];
-            }
-          ];
+          modules = serverModules;
+        };
+      };
+      colmenaHive = colmena.lib.makeHive {
+        meta = {
+          nixpkgs = pkgs;
+        };
+        nixos-server = {
+          deployment = {
+            targetHost = "100.104.174.121";
+            targetUser = "duckdarsh";
+          };
+          imports = serverModules;
         };
       };
     };

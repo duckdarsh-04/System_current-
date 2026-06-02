@@ -135,7 +135,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.starship.enable = true;
+  programs.keychain = {
+    enable = true;
+    keys = [ "id_ed25519" ];
+  };
   services.dark-send.enable = true;
+
   programs.git = {
     enable = true;
     settings.user.name = "duckdarsh-04";
