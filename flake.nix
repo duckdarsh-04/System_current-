@@ -1,15 +1,15 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
-    stylix.url = "github:danth/stylix/release-25.11";
-    yt-x.url = "github:Benexl/yt-x";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    stylix.url = "github:danth/stylix/release-26.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     dark-send.url = "github:duckdarsh-04/dark-send";
     sops-nix.url = "github:Mic92/sops-nix";
     colmena.url = "github:zhaofengli/colmena";
+    synfetch.url = "github:SXSLVT/synfetch";
   };
 
   outputs =
@@ -67,9 +67,9 @@
             {
               config.environment.systemPackages = [
                 neovimPkg
-                inputs.yt-x.packages.${system}.default
                 inputs.zen-browser.packages.${system}.default
                 inputs.colmena.packages.${system}.colmena
+                inputs.synfetch.packages.${system}.default
               ];
             }
           ];

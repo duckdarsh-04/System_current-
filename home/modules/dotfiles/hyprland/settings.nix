@@ -21,12 +21,12 @@
         column_widths = "onehalf onethird twothirds onequarter";
       };
 
-      hyprexpo = {
-        columns = 3;
-        gap_size = 5;
-        bg_col = "rgb(111111)";
-        workspace_method = "first 1";
-      };
+      #hyprexpo = {
+      #columns = 3;
+      #gap_size = 5;
+      #bg_col = "rgb(111111)";
+      #workspace_method = "first 1";
+      #};
     };
     decoration = {
       rounding = 10;
@@ -64,7 +64,6 @@
       force_default_wallpaper = 0;
       disable_hyprland_logo = true;
       focus_on_activate = true;
-      vfr = true;
     };
   };
 }

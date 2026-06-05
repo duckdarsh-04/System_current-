@@ -8,9 +8,10 @@
   #Enable hyprland
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     plugins = [
-      pkgs.hyprlandPlugins.hyprscrolling
-      pkgs.hyprlandPlugins.hyprexpo
+      #pkgs.hyprlandPlugins.hyprscrolling
+      #pkgs.hyprlandPlugins.hyprexpo
     ];
 
     settings = {
@@ -24,8 +25,8 @@
       exec-once = [
         "$terminal"
         "waybar"
-        "swww-daemon"
-        "swww img ~/wallpapers/wallhaven-3lgxx3_1920x1080.png --transition-type slide --transition-fps 60"
+        "awww-daemon"
+        "awww img ~/wallpapers/wallhaven-3lgxx3_1920x1080.png --transition-type slide --transition-fps 60"
         "swayosd-server"
         "hypridle"
         "wl-paste --type text --watch cliphist store"
@@ -53,8 +54,8 @@
       };
 
       windowrule = [
-        "suppressevent maximize,class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "suppress_event maximize, match:class .*"
+        "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
 
       ];
     };

@@ -14,10 +14,10 @@
       source ${pkgs.bash-preexec}/share/bash/bash-preexec.sh
       # Atuin
       eval "$(atuin init bash)"
-      #neofetch
-      if [[ $- == *i* ]] && [[ ! -f /tmp/neofetch-shown-$USER ]]; then
-        touch /tmp/neofetch-shown-$USER
-        neofetch
+      #synfetch
+      if [[ $- == *i* ]] && [[ ! -f /tmp/synfetch-shown-$USER ]]; then
+        touch /tmp/synfetch-shown-$USER
+        synfetch --theme catppuccin 
       fi
     '';
 
@@ -32,7 +32,6 @@
   };
 
   home.packages = with pkgs; [
-    neofetch
     bash-preexec
     bash-git-prompt
   ];

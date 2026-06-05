@@ -13,7 +13,7 @@ fi
 
 echo "$WALLPAPER" > "$LAST_WALLPAPER_FILE"
 
-swww img "$WALLPAPER" \
+awww img "$WALLPAPER" \
   --transition-type any \
   --transition-fps 60 \
   --transition-duration 1.5 \

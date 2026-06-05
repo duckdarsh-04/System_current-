@@ -10,7 +10,7 @@
       "$mainMod, V, togglefloating,"
       "$mainMod, D, exec, $menu"
       "$mainMod, P, pseudo,"
-      "$mainMod, J, togglesplit,"
+      "$mainMod, J, layoutmsg, togglesplit"
 
       # Custom scripts and tools
       "$mainMod SHIFT, W, exec, /etc/nixos/home/modules/dotfiles/hyprland/scripts/wallpaper.sh"
@@ -28,7 +28,7 @@
       "$mainMod SHIFT, comma, layoutmsg, move l"
       "$mainMod SHIFT, period, layoutmsg, move r"
       # Hyprexpo
-      "$mainMod, TAB, hyprexpo:expo, toggle"
+      #"$mainMod, TAB, hyprexpo:expo, toggle"
       # Focus movement
       "$mainMod, left, movefocus, l"
       "$mainMod, right, movefocus, r"

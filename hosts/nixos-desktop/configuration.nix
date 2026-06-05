@@ -24,7 +24,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.kernelPackages = pkgs.linuxPackages_zen;
-
+  boot.tmp.useTmpfs = true;
   #zramSwap enabled
   zramSwap = {
     enable = true;
@@ -82,10 +82,6 @@
   ];
   services.displayManager.defaultSession = "hyprland";
   programs.hyprland.enable = true;
-  # Enable the KDE Plasma Desktop Environment.
-  #services.desktopManager.plasma6.enable = false;
-  # Enable the i3 Window Manager Environment
-  #services.xserver.windowManager.i3.enable = false;
   #hyprlock
   security.pam.services.hyprlock = { };
   # Configure keymap in X11
@@ -107,9 +103,6 @@
     pulse.enable = true;
     #If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
 
@@ -147,21 +140,21 @@
       pkgs.javaPackages.openjfx17
       protonplus
       protonup-qt
-      protonvpn-gui
+      proton-vpn
       vulkan-loader
       vulkan-tools
       wine
       weechat
       winetricks
       evince
-      nodejs_20
+      nodejs_22
       hugo
       neomutt
       hyprland
       xwayland
       asusctl
-      xfce.thunar
-      xfce.tumbler
+      thunar
+      tumbler
       sddm-astronaut
       libimobiledevice
       ollama
@@ -172,7 +165,7 @@
       papirus-icon-theme
     ])
     ++ (with pkgs-unstable; [
-      zed-editor
+
     ]);
 
   #permitted Insecure Packages
@@ -218,7 +211,7 @@
   };
   #Asusd
   services.asusd.enable = true;
-  services.asusd.enableUserService = true;
+  #services.asusd.enableUserService = true;
   #sshd
   services.openssh.enable = false;
   #ollama
@@ -227,7 +220,7 @@
   services.tumbler.enable = true;
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-volman
       thunar-media-tags-plugin
@@ -237,24 +230,12 @@
   #enabling nix-index
   programs.command-not-found.enable = false;
   programs.nix-index.enable = true;
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # Open ports in the firewall.
   #networking.firewall.allowedTCPPorts = [ 8080 ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
