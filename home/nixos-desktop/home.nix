@@ -50,17 +50,15 @@
       wlogout
       awww
       wl-clipboard
-      libreoffice
+      onlyoffice-desktopeditors
       swayosd
       teams-for-linux
       obsidian
       sl
-      burpsuite
       magic-wormhole
       amfora
       cava
       spotify
-      jellyfin-desktop
       ryubing
       swaynotificationcenter
       git
@@ -76,6 +74,8 @@
       pandoc
       jasp-desktop
       bun
+      fladder
+      jellyfin-desktop
     ])
 
     ++ (with pkgs-unstable; [
@@ -101,5 +101,5 @@
   services.swayosd.enable = true;
   stylix.targets.gtk.enable = true;
   gtk.gtk4.theme = config.gtk.theme;
-  stylix.targets.qt.enable = true;
+  stylix.targets.qt.enable = false;
 }

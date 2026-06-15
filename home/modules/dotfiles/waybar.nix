@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.waybar = {
     enable = true;
     settings = [
@@ -11,30 +12,70 @@
         clock24h = false;
         layer = "top";
         position = "top";
-        modules-center = ["hyprland/workspaces"];
-        modules-left = [
+        height = 36;
+        modules-center = [
           "custom/startmenu"
-          "custom/arrow6"
-          "pulseaudio"
-          "cpu"
-          "memory"
-          "idle_inhibitor"
-          "custom/arrow7"
+          "hyprland/workspaces"
+          "group/group-status"
+        ];
+        modules-left = [
           "hyprland/window"
         ];
         modules-right = [
-          "custom/arrow4"
           "custom/keybindings"
-          "custom/arrow3"
-          "custom/notification"
-          "custom/arrow3"
-          "custom/exit"
-          "battery"
-          "custom/arrow2"
-          "tray"
-          "custom/arrow1"
-          "clock"
+          "group/group-stats"
+          "group/group-system"
         ];
+        "group/group-status" = {
+          orientation = "horizontal";
+          modules = [
+            "idle_inhibitor"
+            "battery"
+            "clock"
+          ];
+        };
+
+        "group/group-stats" = {
+          orientation = "horizontal";
+          drawer = {
+            transition-duration = 300;
+            children-class = "stats-group";
+            transition-left-to-right = false;
+          };
+          modules = [
+            "custom/arrow-stats"
+            "cpu"
+            "memory"
+            "pulseaudio"
+            "disk"
+          ];
+        };
+
+        "group/group-system" = {
+          orientation = "horizontal";
+          drawer = {
+            transition-duration = 300;
+            children-class = "system-group";
+            transition-left-to-right = false;
+          };
+          modules = [
+            "custom/arrow-system"
+            "custom/notification"
+            "custom/exit"
+            "tray"
+          ];
+        };
+
+        "custom/arrow-stats" = {
+          format = "󰜱";
+          tooltip = false;
+        };
+
+        "custom/arrow-system" = {
+          format = "󰜱";
+          tooltip = false;
+        };
+
         "hyprland/workspaces" = {
           format = "{name}";
           format-icons = {
@@ -46,7 +87,7 @@
           on-scroll-down = "hyprctl dispatch workspace e-1";
         };
         "clock" = {
-          format = " {:%I:%M %p}";
+          format = "{:%I:%M %p}";
           interval = 60;
           tooltip = true;
           tooltip-format = "<big>{:%A, %d %B %Y}</big>";
@@ -123,7 +164,7 @@
         "custom/keybindings" = {
           tooltip = false;
           format = "󱕴";
-          on-click = "sleep 0.1 && list-keybinds";
+          on-click = "sleep 0.1 && /etc/nixos/home/modules/dotfiles/.scripts/keybinds.sh";
         };
         "idle_inhibitor" = {
           format = "{icon}";
@@ -157,9 +198,9 @@
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-plugged = "󱘖 {capacity}%";
+          format = "{icon}";
+          format-charging = "󰂄";
+          format-plugged = "󱘖 ";
           format-icons = [
             "󰁺"
             "󰁻"
@@ -172,29 +213,8 @@
             "󰂂"
             "󰁹"
           ];
-          on-click = "";
-          tooltip = false;
-        };
-        "custom/arrow1" = {
-          format = "";
-        };
-        "custom/arrow2" = {
-          format = "";
-        };
-        "custom/arrow3" = {
-          format = "";
-        };
-        "custom/arrow4" = {
-          format = "";
-        };
-        "custom/arrow5" = {
-          format = "";
-        };
-        "custom/arrow6" = {
-          format = "";
-        };
-        "custom/arrow7" = {
-          format = "";
+          tooltip = true;
+          tooltip-format = "{capacity}%";
         };
       }
     ];
@@ -203,7 +223,7 @@
       ''
           * {
             font-family: JetBrainsMono Nerd Font Mono;
-            font-size: 14px;
+            font-size: 17px;
             border: none;
             border-radius: 12px;
             min-height: 0px;
@@ -247,7 +267,7 @@
          }
 
          #clock, #window, #memory, #cpu, #disk, #battery, #network, #pulseaudio, #tray, #custom-startmenu, #custom-exit, #custom-notification, #idle_inhibitor, #custom-keybindings {
-          padding: 4px 10px;
+          padding: 4px 14px;
           margin: 0 3px;
           background: rgba(255, 255, 255, 0.05); /* Light glass effect */
           color: #${config.lib.stylix.colors.base06};
@@ -256,7 +276,7 @@
 
         #clock {
           font-weight: bold;
-          background: rgba(255, 255, 255, 0.1);
+          background: transparent;
           color: #${config.lib.stylix.colors.base07};
         }
 
@@ -285,8 +305,28 @@
           color: #${config.lib.stylix.colors.base0E};
         }
 
+        #custom-arrow-system,
+        #custom-arrow-stats {
+          font-size: 22px;
+        }
+
+        #group-status {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+          padding: 4px 14px;
+          margin: 0 3px;
+        }
+
+        #idle_inhibitor,
+        #battery,
+        #clock {
+          background: transparent;
+          padding: 0 4px;
+          margin: 0;
+        }
+
         #idle_inhibitor {
-          background: rgba(255, 255, 255, 0.08);
+          background: Transparent;
           color: #${config.lib.stylix.colors.base0C};
         }
       ''

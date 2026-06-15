@@ -33,5 +33,6 @@
     lm_sensors
     alejandra
     lazygit
+    jq
   ];
 }
